@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %} Professors {% endblock %}
+{% block content %}
+    <br>
+    <p>These is the Department of Professors</p>
+    <br>
+    {% for professor in all_professors %}
+        <p>{{ professor.department }}</p>
+        <p>{{ professor.first_name }}</p>
+        <p>{{ professor.last_name }}</p>
+    {% endfor %}
+    <a href="{% url 'student_details' %}" class="btn btn-warning">Go to list of students</a>
+{% endblock %}

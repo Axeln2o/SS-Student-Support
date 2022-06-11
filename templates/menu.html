@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">SS - Student Support</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Students
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if perms.student.add_student %}
+                                <li><a class="dropdown-item" href="{% url 'create_student' %}">Create a new student</a>
+                                </li>
+                            {% endif %}
+                            {% if perms.student.view_list_of_students %}
+                                <li><a class="dropdown-item" href="{% url 'list_of_students' %}">List of students</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Professors
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if perms.professor.add_professor %}
+                                <li><a class="dropdown-item" href="{% url 'create_professor' %}">Create a new
+                                    professor</a>
+                                </li> {% endif %}
+                            {% if perms.professor.view_list_of_professors %}
+                                <li><a class="dropdown-item" href="{% url 'list_of_professors' %}">List of
+                                    professors</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="btn btn_primary">Logout, {{ request.user.username }}</a>
+            {% else %}
+                <a href="{% url 'create_user' %}" class="btn btn-secondary">Sign up</a>
+                <a href="{% url 'login' %}" class="btn btn-success">Login</a>
+
+            {% endif %}
+        </div>
+    </div>
+</nav>

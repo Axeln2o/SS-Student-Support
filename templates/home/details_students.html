@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %} Students {% endblock %}
+{% block content %}
+    <br>
+    <p>These students are olympics</p>
+    <br>
+    {% for student in all_students %}
+        {% if student.is_olympic is True %}
+            <p>{{ student.first_name }}</p>
+            <p>{{ student.last_name }}</p>
+            <p>{{ student.age }}</p>
+            <p>{{ student.is_olympic }}</p>
+        {% endif %}
+        <br>
+    {% endfor %}
+
+    <a href="{% url 'phones_details' %}" class="btn btn-dark">Go to list of phones</a>
+    <br>
+    <br>
+    <a href="{% url 'professors_details' %}" class="btn btn-warning">Go to list of professors</a>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %} Professor Details {{ professor.first_name }} {{ professor.last_name }}
+{% endblock %}
+{% block content %}
+    <style>
+        body {
+            background-color: #72aee6;
+        }
+    </style>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-md-3"><br>
+                <div class="shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card text-bg-success mb-3" style="max-width: 60rem;">
+                        <div class="card-header text-center">{{ professor.first_name }} {{ professor.last_name }}</div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Details</h5>
+                            <p class="card-text text-center">
+                                Department: {{ professor.department }}<br>
+                                Course start time: {{ professor.time|time:"H:i" }}<br>
+                                Is active: {% if is_active is True %} YES {% else %} NO {% endif %}<br>
+                                Created at: {{ professor.created_at|date:"d-m-Y H:i" }}<br>
+                                Updated at: {{ professor.updated_at|date:"d-m-Y" }}
+                            </p>
+                            <div class="card_footer text-center">
+                                <a href="{% url 'list_of_professors' %}" class="btn btn-danger">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Phones {% endblock %}
+{% block content %}
+<br>
+<p>These phones have Google Services</p>
+<br>
+{% for phones in all_phones %}
+    {% if phones.Google_Services is True %}
+        <p>{{ phones.phone_model }}</p>
+        <p>{{ phones.storage_capacity }}</p>
+        <p>{{ phones.display_size }}</p>
+        <p>{{ phones.battery_capacity }}</p>
+        <p>{{ phones.Google_services }}</p>
+    {% elif phones.Google_Services is False %}
+        <p>These phones have Harmony OS</p>
+        <br>
+        <p>{{ phones.phone_model }}</p>
+        <p>{{ phones.storage_capacity }}</p>
+        <p>{{ phones.display_size }}</p>
+        <p>{{ phones.battery_capacity }}</p>
+        <p>{{ phones.Google_services }}</p>
+    {% endif %}
+    <br>
+{% endfor %}
+
+<a href="{% url 'student_details' %}" class="btn btn-dark">Go to list of students</a>
+{% endblock %}
